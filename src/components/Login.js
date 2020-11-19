@@ -41,4 +41,5 @@ const mapStateToProps = state => {
   }
 }
 
+//the second argument for connect is mapDispatchToProps but taking in the functions directly and destructuring them
 export default connect(mapStateToProps, { updateLoginForm, login })(Login)

@@ -8,8 +8,10 @@ export const setCurrentUser = user => {
 
 //asynchronous action creators
 export const login = (credentials, history) => {
+  console.log("credentials are:", credentials)
   return dispatch => {
     //add loading current user...
+    //recommends putting fetches into another folder, like in an adaptor pattern, but it is another layer of abstraction
     return fetch("http://localhost:3000/api/v1/login", {
       // credentials: "include",
       method: "POST",
