@@ -1,9 +1,10 @@
 import React from 'react'
 import './App.css';
-import Login from './components/Login'
-import Logout from './components/Logout'
+import NavBar from './components/NavBar.js'
+
 import { connect } from 'react-redux'
 import { getCurrentUser } from './actions/currentUser.js'
+import MainContainer from './components/MainContainer';
 
 class App extends React.Component{
 
@@ -14,8 +15,8 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        GlobeTrotter
-        {this.props.loggedIn ? <Logout /> : <Login />}
+        <NavBar />
+        <MainContainer />
       </div>
     );
   }

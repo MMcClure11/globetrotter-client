@@ -17,7 +17,7 @@ const Login = ({loginFormData, updateLoginForm, login, history}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    login(loginFormData, history)
+    login(loginFormData)
   }
 
   return (
@@ -41,5 +41,5 @@ const mapStateToProps = state => {
   }
 }
 
-//the second argument for connect is mapDispatchToProps but taking in the functions directly and destructuring them
+//the second argument for connect is mapDispatchToProps but taking in the functions directly and destructuring
 export default connect(mapStateToProps, { updateLoginForm, login })(Login)
