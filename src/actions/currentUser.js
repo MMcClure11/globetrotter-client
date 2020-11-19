@@ -7,8 +7,8 @@ export const setCurrentUser = user => {
 }
 
 //asynchronous action creators
-export const login = (credentials, history) => {
-  console.log("credentials are:", credentials)
+export const login = (credentials) => {
+  // console.log("credentials are:", credentials)
   return dispatch => {
     //add loading current user...
     //recommends putting fetches into another folder, like in an adaptor pattern, but it is another layer of abstraction
@@ -18,15 +18,15 @@ export const login = (credentials, history) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({usernmae: "Meks", password: "password"})
+      body: JSON.stringify({credentials})
     })
       .then(r => r.json())
       .then(response => {
+        // console.log(response)
         if (response.error) {
           alert(response.error)
         } else {
           dispatch(setCurrentUser(response.data))
-          history.push('/')
         }
       })
       .catch(console.log)
