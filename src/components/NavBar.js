@@ -12,7 +12,7 @@ const NavBar = ({ currentUser}) => {
       {/* <button>Login</button>
       OR
       <button>Sign Up</button> */}
-      { currentUser ? <Logout /> : <Login /> }
+      {/* { currentUser ? <Logout /> : <Login /> } */}
     </div>
   )
 }
