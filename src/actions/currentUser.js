@@ -41,15 +41,18 @@ export const login = (credentials) => {
   }
 }
 
-export const signup = (credentials) => {
+export const signup = (credentials, history) => {
   return dispatch => {
+    const userInfo = {
+      user: credentials
+    }
     return fetch("http://localhost:3000/api/v1/signup", {
       credentials: "include",
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(userInfo)
     })
       .then(r => r.json())
       .then(response => {
@@ -58,6 +61,7 @@ export const signup = (credentials) => {
         } else {
           dispatch(setCurrentUser(response.data))
           dispatch(resetSignupForm())
+          history.push('/')
         }
       })
       .catch(console.log)
