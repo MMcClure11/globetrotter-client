@@ -40,6 +40,10 @@ export const login = (credentials) => {
   }
 }
 
+export const signup = () => {
+  console.log("hello from signup action")
+}
+
 export const logout = () => {
   return dispatch => {
     dispatch(clearCurrentUser())
