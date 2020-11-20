@@ -1,5 +1,6 @@
 import { resetLoginForm } from "./loginForm.js"
 import { getMyTrips} from './myTrips.js'
+import { resetSignupForm } from './signupForm.js'
 
 // synchronous action creators
 export const setCurrentUser = user => {
@@ -40,8 +41,27 @@ export const login = (credentials) => {
   }
 }
 
-export const signup = () => {
-  console.log("hello from signup action")
+export const signup = (credentials) => {
+  return dispatch => {
+    return fetch("http://localhost:3000/api/v1/signup", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(r => r.json())
+      .then(response => {
+        if (response.error) {
+          alert(response.error)
+        } else {
+          dispatch(setCurrentUser(response.data))
+          dispatch(resetSignupForm())
+        }
+      })
+      .catch(console.log)
+  }
 }
 
 export const logout = () => {
