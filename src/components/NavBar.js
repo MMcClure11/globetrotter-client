@@ -9,9 +9,9 @@ const NavBar = ({ currentUser}) => {
   return (
     <div className="NavBar">
       { currentUser ? <p>Welcome, {currentUser.attributes.name} from {currentUser.attributes.hometown.city}.</p> : ''}
-      <button>Login</button>
+      {/* <button>Login</button>
       OR
-      <button>Sign Up</button>
+      <button>Sign Up</button> */}
       { currentUser ? <Logout /> : <Login /> }
     </div>
   )
