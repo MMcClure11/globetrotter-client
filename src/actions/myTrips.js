@@ -10,7 +10,7 @@ export const setMyTrips = trips => {
 
 export const getMyTrips = () => {
   return dispatch => {
-    return fetch("http://localhost:3001/api/v1/trips", {
+    return fetch("http://localhost:3000/api/v1/trips", {
       credentials: "include",
       method: "GET",
       headers: {
@@ -22,7 +22,6 @@ export const getMyTrips = () => {
         if (response.error) {
           alert(response.error)
         } else {
-          console.log(response.data)
           dispatch(setMyTrips(response.data))
         }
       })
