@@ -9,6 +9,7 @@ import Logout from './components/Logout.js'
 import Signup from './components/Signup.js'
 import MyTrips from './components/MyTrips.js'
 import TripCard from './components/TripCard.js'
+import NewTripForm from './components/NewTripForm'
 // import NewTripFormWrapper from './components/NewTripFormWrapper.js'
 // import EditTripFormWrapper from './components/EditTripFormWrapper.js'
 import { Route, Switch, withRouter } from 'react-router-dom'
@@ -29,6 +30,7 @@ class App extends React.Component {
           <Route exact path='/signup' render={({history})=><Signup history={history}/>}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/trips' component={MyTrips}/>
+          <Route exact path='/trips/new' component={NewTripForm} />
           <Route exact path='/' render={(props) => loggedIn ? <MyTrips {...props} /> : <Home {...props} /> } />
           {/* <Route exact path='/trips/new' component={NewTripFormWrapper}/> */}
           {/* <Route exact path='/trips/:id' render={props => {
