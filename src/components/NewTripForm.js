@@ -1,31 +1,39 @@
 import React from 'react'
+import { updateNewTripForm } from '../actions/newTripForm'
+import { connect } from 'react-redux'
 
-const NewTripForm = () => {
+const NewTripForm = ({formData, updateNewTripForm}) => {
+
+  const { name, startDate, endDate } = formData
 
   const handleChange = event => {
     const { name, value } = event.target
     updateNewTripForm(name, value) //this represents the action creator
   }
 
+  const handleSubmit = event => {
+    event.preventDefault()
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
           placeholder="name"
           name="name"
           onChange={handleChange}
-          value={'name'}
+          value={name}
         /><br/>
         <input
           placeholder="start date"
           name="startDate"
           onChange={handleChange}
-          value={'startDate'}
+          value={startDate}
         /><br/>
         <input
           placeholder="end date"
           name="endDate"
           onChange={handleChange}
-          value={'endDate'}
+          value={endDate}
         /><br/>
         <input
           type="submit"
@@ -35,4 +43,11 @@ const NewTripForm = () => {
   )
 }
 
-export default NewTripForm
+const mapStateToProps = state => {
+  return {
+    formData: state.newTripForm
+  }
+}
+//need this to make it a controlled form
+
+export default connect(mapStateToProps, { updateNewTripForm })(NewTripForm)
