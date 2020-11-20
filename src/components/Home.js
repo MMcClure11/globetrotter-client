@@ -1,10 +1,14 @@
 import React from 'react'
-import Login from './Login'
-import Signup from './Signup'
+import { Link } from 'react-router-dom'
 
 const Home = ({}) => {
   return (
-    <div>Welcome, please login or signup.</div>
+    <div>
+      <h2>Welcome to Globetrotters!</h2>
+       <span>
+          <Link to="/signup">Sign Up</Link> or <Link to="/login">Log In</Link>
+        </span>
+    </div>
   )
 }
 
