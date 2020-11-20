@@ -8,7 +8,7 @@ import Login from './Login'
 const NavBar = ({ currentUser}) => {
   return (
     <div className="NavBar">
-      { currentUser ? <p>Welcome, {currentUser.attributes.name}.</p> : ''}
+      { currentUser ? <p>Welcome, {currentUser.attributes.name} from {currentUser.attributes.hometown.city}.</p> : ''}
       { currentUser ? <Logout /> : <Login /> }
     </div>
   )
