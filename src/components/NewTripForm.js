@@ -1,7 +1,11 @@
 import React from 'react'
 
 const NewTripForm = () => {
-const handleChange = () => {}
+
+  const handleChange = event => {
+    const { name, value } = event.target
+    updateNewTripForm(name, value) //this represents the action creator
+  }
 
   return (
     <form>
