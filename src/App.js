@@ -5,7 +5,6 @@ import { getCurrentUser } from "./actions/currentUser.js"
 import NavBar from './components/NavBar.js'
 import Home from './components/Home.js'
 import Login from './components/Login.js'
-import Logout from './components/Logout.js'
 import Signup from './components/Signup.js'
 import MyTrips from './components/MyTrips.js'
 import TripCard from './components/TripCard.js'
@@ -24,8 +23,7 @@ class App extends React.Component {
     const { loggedIn, trips } = this.props
     return (
       <div className="App">
-        { loggedIn ? <Logout /> : null }
-        {/* { loggedIn ? <NavBar location={this.props.location}/> : <Home/> } */}
+        { loggedIn ? <NavBar location={this.props.location}/> : <Home/> }
         <Switch>
           <Route exact path='/signup' render={({history})=><Signup history={history}/>}/>
           <Route exact path='/login' component={Login}/>

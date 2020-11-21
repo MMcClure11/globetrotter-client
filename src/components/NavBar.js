@@ -1,18 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Logout from './Logout'
-import Login from './Login'
+import { NavLink } from 'react-router-dom'
 
 
 //
-const NavBar = ({ currentUser}) => {
+const NavBar = ({ currentUser, loggedIn }) => {
   return (
     <div className="NavBar">
-      { currentUser ? <p>Welcome, {currentUser.attributes.name} from {currentUser.attributes.hometown.city}.</p> : ''}
-      {/* <button>Login</button>
-      OR
-      <button>Sign Up</button> */}
-      {/* { currentUser ? <Logout /> : <Login /> } */}
+      {/* active toggle is not working */}
+      <NavLink exact activeClassName="active" to="/trips"  >My Trips  </NavLink>
+      <NavLink exact activeClassName="active" to="/trips/new" >New Trip</NavLink>
+      { loggedIn ? <><p id="loggedin">Logged in as {currentUser.attributes.name}</p><Logout/></> : null}
     </div>
   )
 }
@@ -25,7 +24,8 @@ const NavBar = ({ currentUser}) => {
 
 const mapStateToProps = ({ currentUser }) => {
   return {
-    currentUser
+    currentUser,
+    loggedIn: !!currentUser
   }
 }
 
