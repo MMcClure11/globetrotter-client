@@ -6,7 +6,7 @@ const MyTrips = props => {
   const tripCards = props.trips.length > 0 ?
     props.trips.map(t => (<p key={t.id}><Link to={`/trips/${t.id}`}>{t.attributes.name}</Link></p>)) :
     null
-
+// id is top level, name is nested under attributes (from the serializer)
   return tripCards
 }
 
