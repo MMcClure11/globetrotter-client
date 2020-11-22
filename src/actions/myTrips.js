@@ -1,3 +1,5 @@
+import { resetNewTripForm } from './newTripForm'
+
 // synchronous actions
 export const setMyTrips = trips => {
   return {
@@ -65,12 +67,10 @@ export const createTrip = (tripData, history) => {
           alert(resp.error)
         } else {
           dispatch(addTrip(resp.data))
-          // dispatch(resetTripForm())
-          // history.push(`/trips/${resp.data.id}`)
-          // console.log(history)
-          history.push('/trips')
-          // go somewhere else --> trip show?
-          // add the new trip to the store
+          dispatch(resetNewTripForm())
+          history.push(`/trips/${resp.data.id}`)
+          //go to show page for trip just created
+          // history.push('/trips')
         }
       })
       .catch(console.log)

@@ -6,3 +6,9 @@ export const updateNewTripForm = (name, value) => {
     formData: { name, value }
   }
 }
+
+export const resetNewTripForm = () => {
+  return {
+    type: 'RESET_NEW_TRIP_FORM'
+  }
+}
