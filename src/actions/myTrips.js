@@ -12,6 +12,13 @@ export const clearTrips = () => {
   }
 }
 
+export const addTrip = trip => {
+  return {
+    type: 'ADD_TRIP',
+    trip
+  }
+}
+
 //asynchronous actions
 
 export const getMyTrips = () => {
