@@ -47,9 +47,9 @@ export const createTrip = (tripData, history) => {
     const sendableTripData = {
       start_date: tripData.startDate,
       end_date: tripData.endDate,
-      name: tripData.name,
-      user_id: tripData.userId
+      name: tripData.name
     }
+    //have to do this because rails needs snake case, JS gives us camel case
     return fetch("http://localhost:3000/api/v1/trips", {
       credentials: "include",
       method: "POST",
@@ -58,18 +58,20 @@ export const createTrip = (tripData, history) => {
       },
       body: JSON.stringify(sendableTripData)
     })
+
       .then(r => r.json())
-      .then(resp => {
-        if (resp.error) {
-          alert(resp.error)
-        } else {
-          dispatch(addTrip(resp.data))
-          dispatch(resetTripForm())
-          history.push(`/trips/${resp.data.id}`)
-          // go somewhere else --> trip show?
-          // add the new trip to the store
-        }
-      })
+      .then(console.log)
+      // .then(resp => {
+      //   if (resp.error) {
+      //     alert(resp.error)
+      //   } else {
+      //     dispatch(addTrip(resp.data))
+      //     // dispatch(resetTripForm())
+      //     history.push(`/trips/${resp.data.id}`)
+      //     // go somewhere else --> trip show?
+      //     // add the new trip to the store
+      //   }
+      // })
       .catch(console.log)
 
   }

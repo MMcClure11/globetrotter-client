@@ -1,8 +1,9 @@
 import React from 'react'
 import { updateNewTripForm } from '../actions/newTripForm'
+import { createTrip } from '../actions/myTrips'
 import { connect } from 'react-redux'
 
-const NewTripForm = ({formData, updateNewTripForm}) => {
+const NewTripForm = ({formData, updateNewTripForm, createTrip}) => {
 
   const { name, startDate, endDate } = formData
 
@@ -13,6 +14,7 @@ const NewTripForm = ({formData, updateNewTripForm}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
+    createTrip({...formData})
   }
 
   return (
@@ -50,4 +52,4 @@ const mapStateToProps = state => {
 }
 //need this to make it a controlled form
 
-export default connect(mapStateToProps, { updateNewTripForm })(NewTripForm)
+export default connect(mapStateToProps, { updateNewTripForm, createTrip })(NewTripForm)
