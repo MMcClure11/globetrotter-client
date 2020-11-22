@@ -3,7 +3,7 @@ import { updateNewTripForm } from '../actions/newTripForm'
 import { createTrip } from '../actions/myTrips'
 import { connect } from 'react-redux'
 
-const NewTripForm = ({formData, updateNewTripForm, createTrip}) => {
+const NewTripForm = ({formData, updateNewTripForm, createTrip, history}) => {
 
   const { name, startDate, endDate } = formData
 
@@ -14,7 +14,7 @@ const NewTripForm = ({formData, updateNewTripForm, createTrip}) => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    createTrip({...formData})
+    createTrip({...formData}, history)
   }
 
   return (

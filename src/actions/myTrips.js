@@ -60,18 +60,19 @@ export const createTrip = (tripData, history) => {
     })
 
       .then(r => r.json())
-      .then(console.log)
-      // .then(resp => {
-      //   if (resp.error) {
-      //     alert(resp.error)
-      //   } else {
-      //     dispatch(addTrip(resp.data))
-      //     // dispatch(resetTripForm())
-      //     history.push(`/trips/${resp.data.id}`)
-      //     // go somewhere else --> trip show?
-      //     // add the new trip to the store
-      //   }
-      // })
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(addTrip(resp.data))
+          // dispatch(resetTripForm())
+          // history.push(`/trips/${resp.data.id}`)
+          // console.log(history)
+          history.push('/trips')
+          // go somewhere else --> trip show?
+          // add the new trip to the store
+        }
+      })
       .catch(console.log)
 
   }

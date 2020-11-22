@@ -5,7 +5,7 @@ export default (state = initialState, action) => {
     case "SET_MY_TRIPS":
       return action.trips
       case "ADD_TRIP":
-      return action.state.concat(action.trip)
+      return state.concat(action.trip)
       case "CLEAR_TRIPS":
         return initialState
     default:
