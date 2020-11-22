@@ -38,13 +38,13 @@ class App extends React.Component {
               return <TripCard trip={trip} {...props}/>
             }
           }/>
-          {/* <Route exact path='/trips/:id/edit' render={props => {
+          <Route exact path='/trips/:id/edit' render={props => {
               // I need to get ???
               const trip = trips.find(trip => trip.id === props.match.params.id)
               // dispatch updateForm -> trip
-              return <EditTripFormWrapper trip={trip} {...props}/>
+              return <NewTripForm trip={trip} {...props}/>
             }
-          }/> */}
+          }/>
         </Switch>
       </div>
     );
