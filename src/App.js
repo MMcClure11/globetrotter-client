@@ -30,14 +30,15 @@ class App extends React.Component {
           <Route exact path='/trips' component={MyTrips}/>
           <Route exact path='/trips/new' component={NewTripForm} />
           <Route exact path='/' render={(props) => loggedIn ? <MyTrips {...props} /> : <Home {...props} /> } />
+          {/* <Route exact path='/trips/:id' component={TripCard} /> */}
           {/* <Route exact path='/trips/new' component={NewTripFormWrapper}/> */}
-          {/* <Route exact path='/trips/:id' render={props => {
+          <Route exact path='/trips/:id' render={props => {
               // I need to get ???
               const trip = trips.find(trip => trip.id === props.match.params.id)
               console.log(trip)
               return <TripCard trip={trip} {...props}/>
-            } */}
-          {/* }/> */}
+            }
+          }/>
           {/* <Route exact path='/trips/:id/edit' render={props => {
               // I need to get ???
               const trip = trips.find(trip => trip.id === props.match.params.id)
