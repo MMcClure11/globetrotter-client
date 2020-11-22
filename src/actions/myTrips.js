@@ -41,3 +41,36 @@ export const getMyTrips = () => {
       .catch(console.log)
   }
 }
+
+export const createTrip = (tripData, history) => {
+  return dispatch => {
+    const sendableTripData = {
+      start_date: tripData.startDate,
+      end_date: tripData.endDate,
+      name: tripData.name,
+      user_id: tripData.userId
+    }
+    return fetch("http://localhost:3000/api/v1/trips", {
+      credentials: "include",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(sendableTripData)
+    })
+      .then(r => r.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(addTrip(resp.data))
+          dispatch(resetTripForm())
+          history.push(`/trips/${resp.data.id}`)
+          // go somewhere else --> trip show?
+          // add the new trip to the store
+        }
+      })
+      .catch(console.log)
+
+  }
+}
