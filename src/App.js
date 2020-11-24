@@ -10,9 +10,7 @@ import MyTrips from './components/MyTrips.js'
 import TripCard from './components/TripCard.js'
 import TripForm from './components/TripForm'
 import NewTripFormWrapper from './components/NewTripFormWrapper'
-import { setFormDataForEdit } from './actions/tripForm'
-// import NewTripFormWrapper from './components/NewTripFormWrapper.js'
-// import EditTripFormWrapper from './components/EditTripFormWrapper.js'
+import EditTripFormWrapper from './components/EditTripFormWrapper.js'
 import { Route, Switch, withRouter } from 'react-router-dom'
 
 class App extends React.Component {
@@ -22,7 +20,7 @@ class App extends React.Component {
   }
 
   render(){
-    const { loggedIn, trips, setFormDataForEdit } = this.props
+    const { loggedIn, trips } = this.props
     return (
       <div className="App">
         { loggedIn ? <NavBar location={this.props.location}/> : <Home/> }
@@ -42,7 +40,7 @@ class App extends React.Component {
               // I need to get ???
               const trip = trips.find(trip => trip.id === props.match.params.id)
               // dispatch updateForm -> trip
-              return <TripForm trip={trip} {...props}/>
+              return <EditTripFormWrapper trip={trip} {...props}/>
             }
           }/>
         </Switch>
@@ -59,4 +57,4 @@ const mapStateToProps = state => {
   })
 }
 
-export default withRouter(connect(mapStateToProps, { getCurrentUser, setFormDataForEdit })(App));
+export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
