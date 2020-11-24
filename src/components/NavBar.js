@@ -8,7 +8,6 @@ import { NavLink } from 'react-router-dom'
 const NavBar = ({ currentUser, loggedIn }) => {
   return (
     <div className="NavBar">
-      {/* active toggle is not working */}
       <NavLink exact activeClassName="active" to="/trips"  >My Trips  </NavLink>
       <NavLink exact activeClassName="active" to="/trips/new" >New Trip</NavLink>
       { loggedIn ? <><p id="loggedin">Logged in as {currentUser.attributes.name}</p><Logout/></> : null}

@@ -10,7 +10,8 @@ export default (state = initialState, action) => {
         return initialState
       case "UPDATE_TRIP":
         return state.map(trip => trip.id === action.trip.id ? action.trip : trip)
-        // console.log("in update trip action is", action)
+      case "DELETE_TRIP":
+        return state.filter(trip => trip.id === action.tripId ? false : true)
     default:
       return state
   }

@@ -27,7 +27,6 @@ class App extends React.Component {
           <Route exact path='/signup' render={({history})=><Signup history={history}/>}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/trips' component={MyTrips}/>
-          <Route exact path='/' render={(props) => loggedIn ? <MyTrips {...props} /> : <Home {...props} /> } />
           <Route exact path='/trips/new' component={NewTripFormWrapper}/>
           <Route exact path='/trips/:id' render={props => {
               // I need to get ???
