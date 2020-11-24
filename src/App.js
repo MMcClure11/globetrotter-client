@@ -9,6 +9,8 @@ import Signup from './components/Signup.js'
 import MyTrips from './components/MyTrips.js'
 import TripCard from './components/TripCard.js'
 import TripForm from './components/TripForm'
+import NewTripFormWrapper from './components/NewTripFormWrapper'
+import { setFormDataForEdit } from './actions/tripForm'
 // import NewTripFormWrapper from './components/NewTripFormWrapper.js'
 // import EditTripFormWrapper from './components/EditTripFormWrapper.js'
 import { Route, Switch, withRouter } from 'react-router-dom'
@@ -20,7 +22,7 @@ class App extends React.Component {
   }
 
   render(){
-    const { loggedIn, trips } = this.props
+    const { loggedIn, trips, setFormDataForEdit } = this.props
     return (
       <div className="App">
         { loggedIn ? <NavBar location={this.props.location}/> : <Home/> }
@@ -28,13 +30,11 @@ class App extends React.Component {
           <Route exact path='/signup' render={({history})=><Signup history={history}/>}/>
           <Route exact path='/login' component={Login}/>
           <Route exact path='/trips' component={MyTrips}/>
-          <Route exact path='/trips/new' component={TripForm} />
           <Route exact path='/' render={(props) => loggedIn ? <MyTrips {...props} /> : <Home {...props} /> } />
-          {/* <Route exact path='/trips/new' component={NewTripFormWrapper}/> */}
+          <Route exact path='/trips/new' component={NewTripFormWrapper}/>
           <Route exact path='/trips/:id' render={props => {
               // I need to get ???
               const trip = trips.find(trip => trip.id === props.match.params.id)
-              console.log(trip)
               return <TripCard trip={trip} {...props}/>
             }
           }/>
@@ -59,4 +59,4 @@ const mapStateToProps = state => {
   })
 }
 
-export default withRouter(connect(mapStateToProps, { getCurrentUser })(App));
+export default withRouter(connect(mapStateToProps, { getCurrentUser, setFormDataForEdit })(App));
