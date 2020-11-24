@@ -8,6 +8,9 @@ export default (state = initialState, action) => {
       return state.concat(action.trip)
       case "CLEAR_TRIPS":
         return initialState
+      case "UPDATE_TRIP":
+        return state.map(trip => trip.id === action.trip.id ? action.trip : trip)
+        // console.log("in update trip action is", action)
     default:
       return state
   }
