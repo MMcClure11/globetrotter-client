@@ -9,6 +9,7 @@ class EditTripFormWrapper extends React.Component {
     this.props.trip && this.props.setFormDataForEdit(this.props.trip)
   }
 
+  //using lifecycle methods so that if a user goes directly to an edit url, it will populate the form 
   componentDidUpdate(prevProps) {
     this.props.trip && !prevProps.trip && this.props.setFormDataForEdit(this.props.trip)
   }
