@@ -1,5 +1,4 @@
-import { resetNewTripForm } from './newTripForm'
-
+import { resetTripForm } from './tripForm'
 // synchronous actions
 export const setMyTrips = trips => {
   return {
@@ -16,12 +15,26 @@ export const clearTrips = () => {
 
 export const addTrip = trip => {
   return {
-    type: 'ADD_TRIP',
+    type: "ADD_TRIP",
     trip
   }
 }
 
-//asynchronous actions
+export const deleteTripSuccess = tripId => {
+  return {
+    type: "DELETE_TRIP",
+    tripId
+  }
+}
+
+export const updateTripSuccess = trip => {
+  return {
+    type: "UPDATE_TRIP",
+    trip
+  }
+}
+
+// async actions
 
 export const getMyTrips = () => {
   return dispatch => {
@@ -49,9 +62,9 @@ export const createTrip = (tripData, history) => {
     const sendableTripData = {
       start_date: tripData.startDate,
       end_date: tripData.endDate,
-      name: tripData.name
+      name: tripData.name,
+      user_id: tripData.userId
     }
-    //have to do this because rails needs snake case, JS gives us camel case
     return fetch("http://localhost:3000/api/v1/trips", {
       credentials: "include",
       method: "POST",
@@ -60,20 +73,76 @@ export const createTrip = (tripData, history) => {
       },
       body: JSON.stringify(sendableTripData)
     })
-
       .then(r => r.json())
       .then(resp => {
         if (resp.error) {
           alert(resp.error)
         } else {
           dispatch(addTrip(resp.data))
-          dispatch(resetNewTripForm())
+          dispatch(resetTripForm())
           history.push(`/trips/${resp.data.id}`)
-          //go to show page for trip just created
-          // history.push('/trips')
+          // go somewhere else --> trip show?
+          // add the new trip to the store
         }
       })
       .catch(console.log)
 
   }
+}
+
+export const updateTrip = (tripData, history) => {
+  return dispatch => {
+    const sendableTripData = {
+      start_date: tripData.startDate,
+      end_date: tripData.endDate,
+      name: tripData.name
+    }
+    return fetch(`http://localhost:3000/api/v1/trips/${tripData.tripId}`, {
+      credentials: "include",
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(sendableTripData)
+    })
+      .then(r => r.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(updateTripSuccess(resp.data))
+          history.push(`/trips/${resp.data.id}`)
+          // go somewhere else --> trip show?
+          // add the new trip to the store
+        }
+      })
+      .catch(console.log)
+
+  }
+}
+
+export const deleteTrip = (tripId, history) => {
+  return dispatch => {
+    return fetch(`http://localhost:3000/api/v1/trips/${tripId}`, {
+      credentials: "include",
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(r => r.json())
+      .then(resp => {
+        if (resp.error) {
+          alert(resp.error)
+        } else {
+          dispatch(deleteTripSuccess(tripId))
+          history.push(`/trips`)
+          // go somewhere else --> trip show?
+          // add the new trip to the store
+        }
+      })
+      .catch(console.log)
+
+  }
+
 }

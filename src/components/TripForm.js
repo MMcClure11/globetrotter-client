@@ -1,15 +1,15 @@
 import React from 'react'
-import { updateNewTripForm } from '../actions/newTripForm'
+import { updateTripForm } from '../actions/tripForm'
 import { createTrip } from '../actions/myTrips'
 import { connect } from 'react-redux'
 
-const NewTripForm = ({formData, updateNewTripForm, createTrip, history}) => {
+const TripForm = ({formData, updateTripForm, createTrip, history}) => {
 
   const { name, startDate, endDate } = formData
 
   const handleChange = event => {
     const { name, value } = event.target
-    updateNewTripForm(name, value) //this represents the action creator
+    updateTripForm(name, value) //this represents the action creator
   }
 
   const handleSubmit = event => {
@@ -47,9 +47,9 @@ const NewTripForm = ({formData, updateNewTripForm, createTrip, history}) => {
 
 const mapStateToProps = state => {
   return {
-    formData: state.newTripForm
+    formData: state.tripForm
   }
 }
 //need this to make it a controlled form
 
-export default connect(mapStateToProps, { updateNewTripForm, createTrip })(NewTripForm)
+export default connect(mapStateToProps, { updateTripForm, createTrip })(TripForm)
